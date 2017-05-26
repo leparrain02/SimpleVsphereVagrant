@@ -9,6 +9,7 @@ template_basedir = "Templates/"
 list_attribut = {
   cluster: "CLUSTER_INTDEV_QA_UAT_PREPROD",
   vlan:    "UAT_VLAN30",
+  storage: "SAN_LUN3",
   servers: [
      {
        name: "chef-server-marc",
@@ -40,13 +41,14 @@ Vagrant.configure("2") do |config|
         vsphere.password = vsphere_password
         vsphere.insecure = true
 
-        vsphere.vm_base_path = list_attribut[:vm_dir]
+        vsphere.vm_base_path = server[:vm_dir]
 
         vsphere.name = server[:name]
         vsphere.compute_resource_name = list_attribut[:cluster]
         vsphere.template_name = server[:template]
         vsphere.customization_spec_name = server[:spec]
         vsphere.vlan = list_attribut[:vlan]
+        vsphere.data_store_name = list_attribut[:storage]
       end
     end
   end
