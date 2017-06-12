@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-vsphere_host = "vcenterdevo.collegemultihexa.ca"
-vsphere_user = "administrator@vsphere.local"
-vsphere_password = "P@ssw0rd"
+vsphere_host = "vcenter-host"
+vsphere_user = "vcenter-user"
+vsphere_password = "vcenter-password"
 template_basedir = "Templates/"
 
 list_attribut = {
