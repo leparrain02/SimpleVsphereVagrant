@@ -1,0 +1,15 @@
+#!/bin/bash
+
+wgetCmd=/bin/wget           #Location of wget command
+curlCmd=/bin/curl
+jenkinsUrl="http://localhost:8080"  #URL to trigger Jenkins
+jenkinsUser=admin
+jenkinsPassword=54364f33992de5c8ec13362e045f5250
+triggerString="BUILD"           #String to trigger builds
+
+jenkinsJob="build.myhelloworld"
+
+cheader=`wget --auth-no-challenge --user ${jenkinsUser} --password ${jenkinsPassword} --output-document - "${jenkinsUrl}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"`
+
+curl -q -X POST ${jenkinsUrl}/job/${jenkinsJob}/build?token=${triggerString} --user ${jenkinsUser}:${jenkinsPassword} --header ${cheader}
+
